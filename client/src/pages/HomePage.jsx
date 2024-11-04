@@ -6,7 +6,6 @@ const HomePage = () => {
     const [image, setImage] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
-    const [encryptedImage, setEncryptedImage] = useState(null);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
