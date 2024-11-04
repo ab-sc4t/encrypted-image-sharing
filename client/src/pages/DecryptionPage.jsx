@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Box, Typography, TextField, Button, IconButton, InputAdornment, InputLabel, FormControl, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const HomePage = () => {
-    const [image, setImage] = useState(null);
+const DecryptionPage = () => {
+    const [encryptedImage, setEncryptedImage] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
-    const [encryptedImage, setEncryptedImage] = useState(null);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -16,25 +15,25 @@ const HomePage = () => {
         event.preventDefault();
     };
 
-    const handlePassword = (e) => {
+    const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
 
-    const handleImageChange = (e) => {
+    const handleEncryptedImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setImage(e.target.files[0]);
+            setEncryptedImage(e.target.files[0]);
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleDecryptSubmit = async (e) => {
         e.preventDefault();
-        if (image && password) {
+        if (encryptedImage && password) {
             const formData = new FormData();
-            formData.append('image', image);
+            formData.append('encryptedImage', encryptedImage);
             formData.append('password', password);
 
             try {
-                const response = await fetch('http://localhost:8080/encrypt-image', {
+                const response = await fetch('http://localhost:8080/decrypt-image', {
                     method: 'POST',
                     body: formData,
                 });
@@ -44,26 +43,26 @@ const HomePage = () => {
                     const url = window.URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'encrypted-image.jpeg';
+                    a.download = 'decrypted-image.jpeg';
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
                     window.URL.revokeObjectURL(url);
                 } else {
-                    console.error('Failed to encrypt and download the image.');
+                    console.error('Failed to decrypt and download the image. Possible wrong password.');
                 }
             } catch (error) {
                 console.error('Error:', error);
             }
         } else {
-            console.error('Please provide both an image and a password.');
+            console.error('Please provide both the encrypted image and password.');
         }
     };
 
     return (
         <>
-            <Box sx={{ paddingTop: "2rem", textAlign: "center"}}>
-                <Typography variant="h3">Encrypt Image</Typography>
+            <Box sx={{ paddingTop: "2rem", textAlign: "center" }}>
+                <Typography variant="h3">Decrypt Encrypted Image</Typography>
             </Box>
 
             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
@@ -72,12 +71,12 @@ const HomePage = () => {
                         variant="outlined"
                         fullWidth
                         type="file"
-                        onChange={handleImageChange}
+                        onChange={handleEncryptedImageChange}
                     />
                 </Box>
                 <Box sx={{ padding: "2rem" }}>
                     <FormControl fullWidth variant="outlined">
-                        <InputLabel htmlFor="outlined-password">Enter desired password</InputLabel>
+                        <InputLabel htmlFor="outlined-password">Enter decryption password</InputLabel>
                         <OutlinedInput
                             id="outlined-password"
                             type={showPassword ? 'text' : 'password'}
@@ -94,17 +93,17 @@ const HomePage = () => {
                                 </InputAdornment>
                             }
                             label="Password"
-                            onChange={handlePassword}
+                            onChange={handlePasswordChange}
                             value={password}
                         />
                     </FormControl>
                 </Box>
             </Box>
             <Box sx={{textAlign: "center"}}>
-                <Button type="submit" onClick={handleSubmit}>Encrypt and Download</Button>
+                <Button type="submit" onClick={handleDecryptSubmit}>Decrypt and Download</Button>
             </Box>
         </>
     );
 };
 
-export default HomePage;
+export default DecryptionPage;
