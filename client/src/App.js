@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider
-import theme from './theme'; // Import your theme
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme';
 import HomePage from './pages/HomePage';
 import DecryptionPage from './pages/DecryptionPage';
 import Header from "./components/Header";
@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}> {/* Wrap with ThemeProvider */}
+    <ThemeProvider theme={theme}>
       <Router>
         <Header />
         <Routes>
