@@ -9,7 +9,7 @@ const Header = () => {
     }
 
     const handleDecrypt = () =>{
-        window.location.href = "encrypted-image-sharing/decrypt";
+        window.location.href = "/encrypted-image-sharing/decrypt";
     }
 
     return (

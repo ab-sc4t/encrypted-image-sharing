@@ -14,7 +14,7 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route path="encrypted-image-sharing/decrypt" element={<DecryptionPage />} />
+          <Route path="/encrypted-image-sharing/decrypt" element={<DecryptionPage />} />
         </Routes>
       </Router>
     </ThemeProvider>
