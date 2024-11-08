@@ -65,7 +65,7 @@ const DecryptionPage = () => {
     return (
         <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Box sx={{ backgroundColor: theme.palette.background.default, height: "16vh" }}></Box>
-            <Box sx={{ backgroundColor: theme.palette.background.default, height: "78vh" }}>
+            <Box sx={{ backgroundColor: theme.palette.background.default, height: "74vh" }}>
                 <Box sx={{
                     paddingTop: "2rem",
                     textAlign: "center",

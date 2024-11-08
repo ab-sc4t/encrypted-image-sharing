@@ -5,6 +5,7 @@ import theme from './theme';
 import HomePage from './pages/HomePage';
 import DecryptionPage from './pages/DecryptionPage';
 import Header from "./components/Header";
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/decrypt" element={<DecryptionPage />} />
         </Routes>
+        <Footer/>
       </Router>
     </ThemeProvider>
   );

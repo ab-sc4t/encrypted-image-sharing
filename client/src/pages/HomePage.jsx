@@ -59,7 +59,7 @@ const HomePage = () => {
         <>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <Box sx={{ height: "16vh", backgroundColor: theme.palette.background.default }}></Box>
-                <Box sx={{ backgroundColor: theme.palette.background.default, height: "78vh" }}>
+                <Box sx={{ backgroundColor: theme.palette.background.default, height: "74vh" }}>
                     <Box sx={{
                         paddingTop: "2rem",
                         textAlign: "center",
