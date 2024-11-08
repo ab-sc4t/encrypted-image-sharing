@@ -28,8 +28,6 @@ const HomePage = () => {
         }
     };
 
-    const fetchURL = window.location.hostname === 'localhost' ? 'http://localhost:8080/encrypt-image' : 'http://192.168.1.8:8080/encrypt-image';
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (image && password) {
@@ -38,7 +36,7 @@ const HomePage = () => {
             formData.append('password', password);
 
             try {
-                const response = await fetch(fetchURL, {
+                const response = await fetch("https://encrypted-image-sharing.onrender.com", {
                     method: 'POST',
                     body: formData,
                 });

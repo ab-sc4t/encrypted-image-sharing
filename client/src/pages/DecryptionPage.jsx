@@ -27,8 +27,6 @@ const DecryptionPage = () => {
         }
     };
 
-    const fetchURL = window.location.hostname === 'localhost' ? 'http://localhost:8080/decrypt-image' : 'http://192.168.1.8:8080/decrypt-image';
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (image && password) {
@@ -37,7 +35,7 @@ const DecryptionPage = () => {
             formData.append('password', password);
 
             try {
-                const response = await fetch(fetchURL, {
+                const response = await fetch("https://encrypted-image-sharing.onrender.com", {
                     method: 'POST',
                     body: formData,
                 });
