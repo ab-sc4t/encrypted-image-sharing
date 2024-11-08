@@ -36,7 +36,7 @@ const HomePage = () => {
             formData.append('password', password);
 
             try {
-                const response = await fetch("https://encrypted-image-sharing.onrender.com", {
+                const response = await fetch("https://encrypted-image-sharing.onrender.com/encrypt-image", {
                     method: 'POST',
                     body: formData,
                 });
