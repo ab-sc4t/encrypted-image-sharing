@@ -57,7 +57,7 @@ const HomePage = () => {
                 setIsLoading(false); 
             }
         } else {
-            console.error('Please provide both an image and a password.');
+            alert('Please provide both an image and a password.');
         }
     };
 

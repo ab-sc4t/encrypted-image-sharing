@@ -33,7 +33,7 @@ const DecryptionPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (image && password) {
-            setIsLoading(true); // Show loading indicator
+            setIsLoading(true);
             const formData = new FormData();
             formData.append('encryptedImage', image);
             formData.append('password', password);
