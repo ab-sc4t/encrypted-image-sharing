@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Box, Typography, TextField, Button, IconButton, InputAdornment, InputLabel, FormControl, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
+import Lottie from "lottie-react";
+import loadingAnimation from "../loadingAnimation.json";
 
 const DecryptionPage = () => {
     const theme = useTheme();
     const [image, setImage] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -30,8 +33,9 @@ const DecryptionPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (image && password) {
+            setIsLoading(true); // Show loading indicator
             const formData = new FormData();
-            formData.append('encryptedImage', image); // Change this line
+            formData.append('encryptedImage', image);
             formData.append('password', password);
 
             try {
@@ -55,12 +59,13 @@ const DecryptionPage = () => {
                 }
             } catch (error) {
                 console.error('Error:', error);
+            } finally {
+                setIsLoading(false);
             }
         } else {
-            console.error('Please provide both an image and a password.');
+            alert('Please provide both an image and a password.');
         }
     };
-
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -142,27 +147,36 @@ const DecryptionPage = () => {
                 </Box>
 
                 <Box sx={{ textAlign: "center", padding: "1rem" }}>
-                    <Button
-                        type="submit"
-                        onClick={handleSubmit}
-                        variant="contained"
-                        sx={{
-                            backgroundColor: theme.palette.primary.main,
-                            color: theme.palette.background.default,
-                            padding: "12px 24px",
-                            borderRadius: "8px",
-                            textTransform: "none",
-                            '&:hover': {
-                                backgroundColor: theme.palette.primary.dark,
-                            }
-                        }}
-                    >
-                        Decrypt and Download
-                    </Button>
+                    {isLoading ? (
+                        <Box sx={{ display: "flex", justifyContent: "center" }}>
+                            <Lottie
+                                animationData={loadingAnimation}
+                                loop
+                                style={{ width: 200, height: 200 }}
+                            />
+                        </Box>
+                    ) : (
+                        <Button
+                            type="submit"
+                            onClick={handleSubmit}
+                            variant="contained"
+                            sx={{
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.background.default,
+                                padding: "12px 24px",
+                                borderRadius: "8px",
+                                textTransform: "none",
+                                '&:hover': {
+                                    backgroundColor: theme.palette.primary.dark,
+                                }
+                            }}
+                        >
+                            Decrypt and Download
+                        </Button>
+                    )}
                 </Box>
             </Box>
         </Box>
-
     );
 };
 
