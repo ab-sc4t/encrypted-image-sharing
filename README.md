@@ -5,3 +5,5 @@ A user uploads an image with a password, which is used to encrypt the image. The
 Encryption & Decryption: Upload and encrypt images with a password, then share them securely.
 Secure Access: Only users with the correct password can decrypt and view the image.
 Easy Navigation: Simple and user-friendly interface for encryption and decryption.
+
+https://ab-sc4t.github.io/encrypted-image-sharing/#/
